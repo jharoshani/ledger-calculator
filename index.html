@@ -1,0 +1,104 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#06241b">
+    <meta name="description" content="A casino-themed calculator with a private, persistent session ledger.">
+    <title>House Ledger | Casino Calculator</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="script.js" defer></script>
+  </head>
+  <body>
+    <main class="app-shell">
+      <header class="page-heading">
+        <p class="eyebrow">THE HOUSE LEDGER</p>
+        <h1>Make every number count.</h1>
+        <p class="page-intro">A little luck, a little math, and a place to keep track.</p>
+      </header>
+
+      <div class="workspace">
+        <section class="calculator" aria-label="Casino calculator">
+          <div class="calculator-brand">
+            <span class="brand-mark" aria-hidden="true">♠</span>
+            <span>THE HOUSE</span>
+            <span class="brand-rule" aria-hidden="true"></span>
+            <span class="brand-subtitle">TABLE CALCULATOR</span>
+          </div>
+
+          <div class="display" aria-label="Calculator display">
+            <div class="display-topline" id="expression" aria-live="polite"></div>
+            <output class="display-value" id="display" aria-live="assertive" aria-atomic="true">0</output>
+          </div>
+
+          <div class="keypad" aria-label="Calculator keypad">
+            <button class="key key-utility" type="button" data-action="clear" aria-label="All clear">AC</button>
+            <button class="key key-utility" type="button" data-action="delete" aria-label="Delete last digit">DEL</button>
+            <button class="key key-double" type="button" data-action="double" aria-label="Double the displayed value">2x</button>
+            <button class="key key-operator" type="button" data-operator="/" aria-label="Divide">÷</button>
+
+            <button class="key key-number" type="button" data-digit="7">7</button>
+            <button class="key key-number" type="button" data-digit="8">8</button>
+            <button class="key key-number" type="button" data-digit="9">9</button>
+            <button class="key key-operator" type="button" data-operator="*">×</button>
+
+            <button class="key key-number" type="button" data-digit="4">4</button>
+            <button class="key key-number" type="button" data-digit="5">5</button>
+            <button class="key key-number" type="button" data-digit="6">6</button>
+            <button class="key key-operator" type="button" data-operator="-">−</button>
+
+            <button class="key key-number" type="button" data-digit="1">1</button>
+            <button class="key key-number" type="button" data-digit="2">2</button>
+            <button class="key key-number" type="button" data-digit="3">3</button>
+            <button class="key key-operator" type="button" data-operator="+">+</button>
+
+            <button class="key key-operator" type="button" data-operator="%">%</button>
+            <button class="key key-number" type="button" data-digit="0">0</button>
+            <button class="key key-number" type="button" data-digit=".">.</button>
+            <button class="key key-equals" type="button" data-action="equals" aria-label="Calculate result">=</button>
+          </div>
+          <p class="calculator-footnote">All bets stay on this device.</p>
+        </section>
+
+        <section class="ledger" aria-labelledby="ledger-heading">
+          <div class="ledger-header">
+            <div class="ledger-title-wrap">
+              <p class="eyebrow ledger-eyebrow">YOUR SESSION</p>
+              <h2 id="ledger-heading" class="visually-hidden">Calculation ledger</h2>
+              <input
+                class="session-title"
+                id="session-title"
+                type="text"
+                maxlength="80"
+                placeholder="Session Title..."
+                aria-label="Session title"
+                autocomplete="off"
+              >
+              <div class="print-heading" aria-hidden="true">
+                <p class="print-kicker">SESSION LEDGER</p>
+                <h2 id="print-session-title"></h2>
+                <p id="print-date"></p>
+              </div>
+            </div>
+            <div class="ledger-actions">
+              <button class="text-button" id="clear-log" type="button">Clear log</button>
+              <button class="pdf-button" id="save-pdf" type="button" title="Open the print dialog, then choose Save as PDF">
+                <span aria-hidden="true">↓</span>
+                Save as PDF
+              </button>
+            </div>
+          </div>
+
+          <div class="ledger-meta">
+            <span id="entry-count">0 of 10 entries</span>
+            <span class="private-label"><span aria-hidden="true">●</span> Saved on this device</span>
+          </div>
+          <div class="history-list" id="history-list" aria-live="polite"></div>
+        </section>
+      </div>
+      <footer class="page-footer">A private ledger for your calculations. Your session is saved on this device.</footer>
+    </main>
+
+    <div class="toast" id="toast" role="status" aria-live="polite"></div>
+  </body>
+</html>
